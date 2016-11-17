@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Hierarchy Visualizer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" />
+    <style>
+        body {
+            padding-top: 30px;
+        }
+    </style>
+
+    <!-- JS -->
+    <script src="https://code.angularjs.org/1.4.0-rc.1/angular.js"></script>
+    <script src="https://angular-file-upload.appspot.com/js/ng-file-upload-shim.js"></script>
+    <script src="https://angular-file-upload.appspot.com/js/ng-file-upload.js"></script>
+    <script src="dist/angular-file-upload.min.js"></script>
+    <script src="controllers.js"></script>
+</head>
+
+
+<body ng-app="fileUpload" ng-controller="MyCtrl">
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-6">
+                <!-- FORM ============ -->
+
+                <form name="myForm" class="formoid-flat-green" style="background-color:#FFFFFF;font-size:14px;font-family:'Lato', sans-serif;color:#666666;max-width:480px;min-width:150px">
+                    <div class="title" align="center">
+                        <h2>Hierarchy Visualizer</h2>
+                    </div>
+                    <br><br>
+
+                    <!-- EMAIL -->
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" class="form-control" name="userEmail" ng-model="useremail" ng-pattern="/^[A-Za-z0-9._%+-]+@dell.com$/" required>
+                        <i ng-show="myForm.userEmail.$error.required">*required</i>
+                        <i ng-show="myForm.userEmail.$invalid && !myForm.userEmail.$pristine" class="help-block">Enter a valid @dell.com email.</i>
+
+                    </div>
+
+                    <!-- FILE -->
+                    <div class="form-group">
+                        <label>File:</label>
+                        <input type="file" class="form-control" ngf-select ng-model="csvFile" name="file" accept=".csv" ngf-max-size="2MB" required
+                            ngf-model-invalid="errorFiles">
+                        <i ng-show="myForm.file.$error.required">*required</i><br>
+                        <i ng-show="myForm.file.$error.maxSize">File too large 
+            	            {{errorFiles[0].size / 1000000|number:1}}MB: max 2M</i>
+
+                        <button ng-click="csvFile = null" ng-show="csvFile">Remove</button>
+                    </div>
+
+                    <!-- BUTTON -->
+                    <div class="form-group">
+                        <button ng-disabled="!myForm.$valid" ng-click="uploadPic(csvFile)">Submit</button>
+                        <span class="progress" ng-show="csvFile.progress >= 0">
+                               <div style="width:{{csvFile.progress}}%" 
+                                ng-bind="csvFile.progress + '%'"></div>
+                        </span>
+                        <span ng-show="csvFile.result">Upload Successful. You will get an email from us shortly.</span>
+                        <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+
+                        <br><br><br><p class="frmd"><a href="email-address to feedback">Give Feedback</a> thanks for using</p>
+                    </div>
+                    <br>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
