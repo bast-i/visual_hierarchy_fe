@@ -40,7 +40,8 @@
                     <!-- EMAIL -->
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" class="form-control" name="userEmail" ng-model="useremail" ng-pattern="/^[A-Za-z0-9._%+-]+@dell.com$/" required>
+                        <input type="email" class="form-control" name="userEmail" ng-model="useremail" ng-pattern="/^[A-Za-z0-9._%+-]+@dell.com$/"
+                            required>
                         <i ng-show="myForm.userEmail.$error.required">*required</i>
                         <i ng-show="myForm.userEmail.$invalid && !myForm.userEmail.$pristine" class="help-block">Enter a valid @dell.com email.</i>
 
@@ -68,7 +69,8 @@
                         <span ng-show="csvFile.result">Upload Successful. You will get an email from us shortly.</span>
                         <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
 
-                        <br><br><br><p class="frmd"><a href="mahmuthan.bastug@dell.com">Give Feedback</a> thanks for using</p>
+                        <br><br><br>
+                        <p class="frmd"><a href="mahmuthan.bastug@dell.com">Give Feedback</a> thanks for using</p>
                     </div>
                     <br>
                 </form>
@@ -76,6 +78,15 @@
             </div>
         </div>
     </div>
+
+
+    <!-- TREEVIEW -->
+    <div class="container">
+
+
+
+    </div>
+
 </body>
 
 </html>
